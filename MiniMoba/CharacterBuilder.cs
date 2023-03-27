@@ -9,13 +9,13 @@ namespace MiniMoba;
 
 public class CharacterBuilder
 {
-    protected int resilience = 0;
-    protected int stubbornness = 0;
-    protected int zeal = 0;
-    protected int aggressiveness = 0;
-    protected int mobility = 0;
-    protected int control = 0;
-    protected int prosperity = 0;
+    internal int resilience = 0;
+    internal int stubbornness = 0;
+    internal int zeal = 0;
+    internal int aggressiveness = 0;
+    internal int mobility = 0;
+    internal int control = 0;
+    internal int prosperity = 0;
 
     private CharacterBuilder setProperties(
         int resilience,
@@ -57,7 +57,7 @@ public class CharacterBuilder
     /// Build the character with properties setted.
     /// </summary>
     /// <returns>A new character.</returns>
-    public Character Build()
+    public virtual Character Build()
     {
         setProsperityBased();
         
