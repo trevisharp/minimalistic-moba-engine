@@ -49,15 +49,13 @@ public class Status
         {
             if (value < minValue)
             {
-                setValue(minValue);
-                minReached();
+                Minimize();
                 return;
             }
 
             if (value > maxValue)
             {
-                setValue(maxValue);
-                maxReached();
+                Maximize();
                 return;
             }
 
@@ -70,6 +68,18 @@ public class Status
         this.minValue = min;
         this.crrValue = stt;
         this.maxValue = max;
+    }
+
+    public void Maximize()
+    {
+        setValue(maxValue);
+        maxReached();
+    }
+
+    public void Minimize()
+    {
+        setValue(minValue);
+        minReached();
     }
 
     private void setValue(int value)
@@ -118,6 +128,25 @@ public class Status
     public event Action<Status> OnValueChanged;
     public event Action<Status> OnMaxChanged;
     public event Action<Status> OnMinChanged;
+
+    public static Status operator +(Status status, int value)
+    {
+        status.Current += value;
+        return status;
+    }
+
+    public static Status operator -(Status status, int value)
+    {
+        status.Current -= value;
+        return status;
+    }
+
+    public static Status operator *(Status status, float value)
+    {
+        float newValue = value * status.Current;
+        status.Current = (int)newValue;
+        return status;
+    }
 
     public static implicit operator Status((int min, int stt, int max) tuple)
         => new Status(tuple.min, tuple.stt, tuple.max);
