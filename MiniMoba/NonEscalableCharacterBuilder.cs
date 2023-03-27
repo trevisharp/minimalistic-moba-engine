@@ -15,7 +15,7 @@ public class NonEscalableCharacterBuilder : InnerCharacterBuilder
     /// <returns>Return this builder</returns>
     protected NonEscalableCharacterBuilder AsEarlyGame()
     {
-        Inner.prosperity = 1;
+        Data.Prosperity = 1;
         return this;
     }
 
@@ -25,7 +25,7 @@ public class NonEscalableCharacterBuilder : InnerCharacterBuilder
     /// <returns>Return this builder</returns>
     protected NonEscalableCharacterBuilder AsMidGame()
     {
-        Inner.prosperity = 2;
+        Data.Prosperity = 2;
         return this;
     }
 }

@@ -11,7 +11,10 @@ namespace MiniMoba;
 public class InnerCharacterBuilder : CharacterBuilder
 {
     internal InnerCharacterBuilder(CharacterBuilder inner)
-        => this.Inner = inner;
+    {
+        this.Inner = inner;
+        this.Data = inner.Data;
+    }
 
     protected internal CharacterBuilder Inner { get; set; }
 

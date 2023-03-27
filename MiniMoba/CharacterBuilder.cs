@@ -7,52 +7,25 @@ using System;
 
 namespace MiniMoba;
 
+/// <summary>
+/// A Builder to Create a Complex Character.
+/// </summary>
 public class CharacterBuilder
 {
-    internal int resilience = 0;
-    internal int stubbornness = 0;
-    internal int zeal = 0;
-    internal int aggressiveness = 0;
-    internal int mobility = 0;
-    internal int control = 0;
-    internal int prosperity = 0;
-
-    private CharacterBuilder setProperties(
-        int resilience,
-        int stubbornness,
-        int zeal,
-        int aggressiveness,
-        int mobility,
-        int control
-    )
+    /// <summary>
+    /// Create a new Character Builder.
+    /// </summary>
+    /// <returns>The new character builder.</returns>
+    public static CharacterBuilder New()
     {
-        this.resilience = resilience;
-        this.stubbornness = stubbornness;
-        this.zeal = zeal;
-        this.aggressiveness = aggressiveness;
-        this.mobility = mobility;
-        this.control = control;
-        return this;
+        CharacterBuilderData data = new CharacterBuilderData();
+
+        CharacterBuilder builder = new CharacterBuilder();
+        builder.Data = data;
+
+        return builder;
     }
 
-    private void setProsperityBasedProperty(ref int prop)
-    {
-        if (prop < 2)
-            return;
-        prop = prop - prosperity;
-    }
-
-    private CharacterBuilder setProsperityBased()
-    {
-        setProsperityBasedProperty(ref resilience);
-        setProsperityBasedProperty(ref stubbornness);
-        setProsperityBasedProperty(ref zeal);
-        setProsperityBasedProperty(ref aggressiveness);
-        setProsperityBasedProperty(ref mobility);
-        setProsperityBasedProperty(ref control);
-        return this;
-    }
-    
     /// <summary>
     /// Build the character with properties setted.
     /// </summary>
@@ -354,5 +327,57 @@ public class CharacterBuilder
     {
         setProperties(2, 0, 0, 0, 0, 1);
         return new NonEscalableCharacterBuilder(this);
+    }
+
+    internal CharacterBuilderData Data { get; set; }
+
+    private void setProperties(
+        int resilience, int stubbornness,
+        int zeal, int aggressiveness,
+        int mobility, int control
+    )
+    {
+        Data.Resilience = resilience;
+        Data.Stubbornness = stubbornness;
+        Data.Zeal = zeal;
+        Data.Aggressiveness = aggressiveness;
+        Data.Mobility = mobility;
+        Data.Control = control;
+    }
+
+    private void setProsperityBasedProperty(ref int prop)
+    {
+        if (prop < 2)
+            return;
+        prop = prop - Data.Prosperity;
+    }
+
+    private void setProsperityBased()
+    {
+        int data = 0;
+        
+        data = Data.Resilience;
+        setProsperityBasedProperty(ref data);
+        Data.Resilience = data;
+        
+        data = Data.Stubbornness;
+        setProsperityBasedProperty(ref data);
+        Data.Stubbornness = data;
+
+        data = Data.Zeal;
+        setProsperityBasedProperty(ref data);
+        Data.Zeal = data;
+
+        data = Data.Aggressiveness;
+        setProsperityBasedProperty(ref data);
+        Data.Aggressiveness = data;
+
+        data = Data.Mobility;
+        setProsperityBasedProperty(ref data);
+        Data.Mobility = data;
+        
+        data = Data.Control;
+        setProsperityBasedProperty(ref data);
+        Data.Control = data;
     }
 }

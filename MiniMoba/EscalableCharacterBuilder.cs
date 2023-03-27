@@ -15,7 +15,7 @@ public class EscalableCharacterBuilder : InnerCharacterBuilder
     /// <returns>Return this builder</returns>
     protected EscalableCharacterBuilder AsEarlyGame()
     {
-        Inner.prosperity = 1;
+        Data.Prosperity = 1;
         return this;
     }
 
@@ -25,7 +25,7 @@ public class EscalableCharacterBuilder : InnerCharacterBuilder
     /// <returns>Return this builder</returns>
     protected EscalableCharacterBuilder AsMidGame()
     {
-        Inner.prosperity = 1;
+        Data.Prosperity = 1;
         return this;
     }
 
@@ -36,7 +36,7 @@ public class EscalableCharacterBuilder : InnerCharacterBuilder
     /// <returns>Return this builder</returns>
     protected EscalableCharacterBuilder AsEndGame()
     {
-        Inner.prosperity = 2;
+        Data.Prosperity = 2;
         return this;
     }
 }
